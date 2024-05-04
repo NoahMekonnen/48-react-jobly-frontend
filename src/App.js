@@ -126,12 +126,10 @@ function App() {
   }
 
   useEffect(() =>{
-    console.log(appliedJobs,"effect")
     if(appliedJobs.length==0 && !localStorage.getItem('jobs')){
       localStorage.setItem('jobs',JSON.stringify([]))
     }
     if(appliedJobs.length>0){
-      console.log('hi')
       localStorage.setItem('jobs',JSON.stringify(appliedJobs))
     }
   },[appliedJobs])
@@ -139,7 +137,6 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem('token')
     JoblyApi.token = token
-    console.log(localStorage.getItem('jobs'),"input")
     const jobs = JSON.parse(localStorage.getItem('jobs'))
     if(jobs){
       setAppliedJobs(() => jobs)

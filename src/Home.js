@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
 const Home = ({ isLoggedIn, firstName }) => {
-    console.log(firstName,"first")
     const navigate = useNavigate()
 
     const handleLoginSubmit = (e) => {
