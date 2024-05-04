@@ -1,5 +1,5 @@
 import { useState, useEffect, createContext } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Home from './Home.js';
 import CompanyList from './Company/CompanyList.js';
 import CompanyDetail from './Company/CompanyDetail.js';
@@ -151,7 +151,7 @@ function App() {
   return (
     <div className="App">
       <ApplyContext.Provider value={{ handleApplySubmit, appliedJobs }}>
-        <BrowserRouter>
+        <HashRouter>
           <NavBar isLoggedIn={isLoggedIn}
             username={username} />
           <Routes>
@@ -188,7 +188,7 @@ function App() {
                 setUsername={setUsername} />} />
             <Route path='*' element={<Navigate to="/" />}/>
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </ApplyContext.Provider>
 
     </div>
