@@ -1,7 +1,6 @@
 import {Navigate} from 'react-router-dom';
 
-const Logout = ({setIsLoggedIn, setUsername}) =>{
-    setIsLoggedIn(false)
+const Logout = ({setUsername}) =>{
     setUsername('')
     localStorage.removeItem('token')
     localStorage.removeItem('jobs')

@@ -18,9 +18,18 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const user = localStorage.getItem('token') ? jwtDecode(localStorage.getItem('token')).username : ''
+
   const [username, setUsername] = useState(user)
   const [firstName, setFirstName] = useState('')
   const [appliedJobs, setAppliedJobs] = useState([])
+
+  useEffect(()=>{
+    if(username){
+      setIsLoggedIn(true)
+    }else{
+      setIsLoggedIn(false)
+    }
+  },[username])
 
   const INITIAL_SIGN_UP_STATE = {
     username: '',
@@ -184,8 +193,7 @@ function App() {
                 handleSubmit={handleProfileSubmit}
                 formData={profileFormData} />} />
             <Route path='/logout'
-              element={<Logout setIsLoggedIn={setIsLoggedIn}
-                setUsername={setUsername} />} />
+              element={<Logout setUsername={setUsername} />} />
             <Route path='*' element={<Navigate to="/" />}/>
           </Routes>
         </HashRouter>
