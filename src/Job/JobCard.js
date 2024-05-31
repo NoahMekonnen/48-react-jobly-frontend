@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import ApplyContext from '../ApplyContext';
+import './JobCard.css';
 
 const JobCard = ({ id, title, salary, equity, companyName }) => {
     const handleSubmit = useContext(ApplyContext).handleApplySubmit
@@ -16,7 +17,9 @@ const JobCard = ({ id, title, salary, equity, companyName }) => {
                 <p>Applied</p>
                 :
                 <form onSubmit={handleSubmit}>
-                    <button>Apply</button>
+                    <button className='btn btn-success'>
+                        Apply
+                    </button>
                 </form>
             }
         </div>

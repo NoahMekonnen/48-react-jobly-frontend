@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import CompanyCard from './CompanyCard';
 import { JoblyApi } from '../api';
 import { v4 as uuid } from 'uuid';
+import './CompanyList.css';
 
 const CompanyList = ({username}) => {
 
@@ -36,13 +37,17 @@ const CompanyList = ({username}) => {
             {username
             ?
             <>
-            <form onSubmit={handleSubmit}>
+            <div className='CompanyList-Form-Container'>
+            <form onSubmit={handleSubmit}
+                className='CompanyList-Form'>
                 <input
+                    className='CompanyList-Input'
                     placeholder='Enter Search Item..'
                     value={filter}
                     onChange={handleChange} />
                 <button>Search</button>
             </form>
+            </div>
 
             {companies && companies.map(({ handle, name, description }) =>
                 <CompanyCard key={uuid()} handle={handle} name={name} description={description} />)}

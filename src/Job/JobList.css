@@ -1,0 +1,8 @@
+.JobList{
+    margin: 0 auto;
+    gap: 20px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 700px;
+}

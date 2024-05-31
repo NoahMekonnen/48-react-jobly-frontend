@@ -1,4 +1,25 @@
 .NavBar{
     display: flex;
+    align-items: center;
+    background-color: white;
+    height: 60px;
+    border: 1px solid #808080;
+    border-width: 0px 0px 1px 0px;
+}
+
+.Jobly{
+    position: absolute;
+    left: 30px;
+}
+.NavBar-Link{
+    text-decoration: none;
+    color:black
+}
+
+.NavBar-Group{
+    position: absolute;
+    width: 20vw;
+    right: 50px;
+    display: flex;
     justify-content: space-around;
 }

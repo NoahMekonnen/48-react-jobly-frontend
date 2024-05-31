@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router-dom';
+import './Home.css';
+import Button from 'react-bootstrap/Button';
 
 const Home = ({ isLoggedIn, firstName }) => {
     const navigate = useNavigate()
@@ -16,21 +18,23 @@ const Home = ({ isLoggedIn, firstName }) => {
     const welcome =  firstName ? <p>Welcome Back, {firstName}</p> :''
     return (
         <div className="Home">
-            <h2>Jobly</h2>
-            <p>All the jobs in one, convenient place</p>
+            <h2 className='Home-Jobly'>Jobly</h2>
+            <p className='Home-text'>All the jobs in one, convenient place</p>
             {
                 isLoggedIn 
                     ?
                     welcome
                     :
-                    <>
-                        <form onSubmit={handleLoginSubmit}>
-                            <button>Log in</button>
+                    <div className='Home-Buttons'>
+                        <form className='Home-LoginButton'
+                            onSubmit={handleLoginSubmit}>
+                            <button className='Home-Button btn btn-primary'><p>Log in</p></button>
                         </form>
-                        <form onSubmit={handleSignUpSubmit}>
-                            <button>Sign up</button>
+                        <form className='Home-SignUpButton'
+                            onSubmit={handleSignUpSubmit}>
+                            <button className='Home-Button btn btn-primary'><p>Sign up</p></button>
                         </form>
-                    </>
+                    </div>
             }
         </div>
     )

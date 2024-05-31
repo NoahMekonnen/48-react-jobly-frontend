@@ -1,0 +1,14 @@
+.CompanyList{
+    margin: 0 auto;
+    gap: 20px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 700px;
+}
+
+.CompanyList-Form-Container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

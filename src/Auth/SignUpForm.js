@@ -1,42 +1,52 @@
 import { useNavigate } from "react-router-dom"
+import "./SignUpForm.css"
 
 const SignUpForm = ({formData, handleChange, handleSubmit}) => {
     const navigate = useNavigate()
     const { username, password, firstName, lastName, email } = formData
     return (
         <div className="SignUpForm">
-            <form onSubmit={(e) =>{
+            <div className="SignUpForm-Container">
+            <div className='LoginForm-Text'>Sign Up</div>
+            <form className="SignUpForm-Form"
+                onSubmit={(e) =>{
                 handleSubmit(e)
                 navigate('/')
             }}>
-                <label>Username</label>
-                <input name='username'
+                <label><b>Username</b></label>
+                <input className="SignUpForm-Username form-control"
+                    name='username'
                     value={username}
                     onChange={handleChange} />
 
-                <label>Password</label>
-                <input type='password'
+                <label><b>Password</b></label>
+                <input className="SignUpForm-Password form-control"
+                    type='password'
                     name='password'
                     value={password}
                     onChange={handleChange} />
 
-                <label>First Name</label>
-                <input name='firstName'
+                <label><b>First Name</b></label>
+                <input className="SignUpForm-FirstName form-control"
+                    name='firstName'
                     value={firstName}
                     onChange={handleChange} />
-                <label>Last Name</label>
-                <input name='lastName'
+                <label><b>Last Name</b></label>
+                <input className="SignUpForm-LastName form-control"
+                    name='lastName'
                     value={lastName}
                     onChange={handleChange} />
 
-                <label>Email</label>
-                <input type='email'
+                <label><b>Email</b></label>
+                <input className="SignUpForm-Email form-control"
+                    type='email'
                     name='email'
                     value={email}
                     onChange={handleChange} />
 
-                <button>Submit</button>
+                <button className="SignUpForm-Button btn btn-primary">Submit</button>
             </form>
+            </div>
         </div>
     )
 }

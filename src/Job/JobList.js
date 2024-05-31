@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import JobCard from './JobCard';
 import { JoblyApi } from '../api';
-import { v4 as uuid } from 'uuid';
+import './JobList.css';
 
 const JobList = ({username}) =>{
     const [jobs, setJobs] = useState([])

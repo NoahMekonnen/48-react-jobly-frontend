@@ -1,0 +1,36 @@
+.ProfilePage{
+    display: flex;
+    justify-content: center;
+    height: 705px;
+
+}
+
+.ProfilePage-Form-Container{
+    position: fixed;
+    top: 26%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 280px;
+    width:350px;
+    border-radius: 6px;
+    border: 1px solid gray;
+}
+
+@media (max-width:440px){
+    .ProfilePage-Form-Container{
+        width: 80vw;
+    }
+}
+
+.ProfilePage-Form{
+    width: 90%;
+    display: block;
+}
+
+.ProfilePage-Form-Button{
+    margin: 10px 0 0 0;
+}
+

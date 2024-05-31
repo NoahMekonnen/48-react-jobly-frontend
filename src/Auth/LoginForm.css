@@ -1,0 +1,53 @@
+.LoginForm{
+    display: flex;
+    justify-content: center;
+    height: 705px;
+
+}
+
+.LoginForm-Container{
+    position: fixed;
+    top: 26%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 220px;
+    width:350px;
+    border-radius: 6px;
+    border: 1px solid gray;
+}
+
+@media (max-width:440px){
+    .LoginForm-Container{
+        width: 80vw;
+    }
+}
+
+.LoginForm-Text{
+    position: absolute;
+    left: 0px;
+    top: -70px;
+    font-size: 2em;
+    font-weight: 500;
+    /* color: white; */
+}
+
+.LoginForm-Form{
+    width: 90%;
+    display: block;
+}
+
+.LoginForm-Button{
+    margin: 10px 0 0 0;
+}
+
+.LoginForm-Invalid{
+    position: relative;
+    height: 50px;
+    width: 80px;
+    background-color: rgb(243, 98, 122);
+    border-radius: 8px;
+    border: 1px red solid;
+}

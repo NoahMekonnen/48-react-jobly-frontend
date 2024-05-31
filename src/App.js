@@ -12,10 +12,12 @@ import { JoblyApi } from './api.js';
 import Logout from './Logout.js';
 import { jwtDecode } from 'jwt-decode';
 import ApplyContext from './ApplyContext.js';
+import './App.css'
 
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [loginErrorStack, setLoginErrorStack] = useState([])
 
   const user = localStorage.getItem('token') ? jwtDecode(localStorage.getItem('token')).username : ''
 
@@ -23,13 +25,13 @@ function App() {
   const [firstName, setFirstName] = useState('')
   const [appliedJobs, setAppliedJobs] = useState([])
 
-  useEffect(()=>{
-    if(username){
+  useEffect(() => {
+    if (username) {
       setIsLoggedIn(true)
-    }else{
+    } else {
       setIsLoggedIn(false)
     }
-  },[username])
+  }, [username])
 
   const INITIAL_SIGN_UP_STATE = {
     username: '',
@@ -56,7 +58,7 @@ function App() {
       JoblyApi.token = token
       localStorage.setItem('token', token)
       setUsername(() => jwtDecode(JoblyApi.token).username)
-      localStorage.setItem('jobs',JSON.stringify([]))
+      localStorage.setItem('jobs', JSON.stringify([]))
     }
 
     await register()
@@ -83,17 +85,24 @@ function App() {
   const handleLoginSubmit = async (e) => {
     e.preventDefault()
     async function login() {
-      const token = await JoblyApi.login(loginFormData)
-      localStorage.setItem('token', token)
-      JoblyApi.token = token
-      setUsername(() => jwtDecode(JoblyApi.token).username)
-      localStorage.setItem('jobs',JSON.stringify([]))
+      try {
+        const token = await JoblyApi.login(loginFormData)
+        localStorage.setItem('token', token)
+        JoblyApi.token = token
+        setUsername(() => jwtDecode(JoblyApi.token).username)
+        localStorage.setItem('jobs', JSON.stringify([]))
+      } catch (e) {
+        setLoginErrorStack(e)
+        console.log(e)
+      }
     }
 
-    await login()
-
-    setIsLoggedIn(true)
+    const loggedIn = await login()
+    if (loggedIn) {
+      setIsLoggedIn(true)
+    }
     setLoginFormData(INITIAL_LOG_IN_STATE)
+
   }
 
   const [profileFormData, setProfileFormData] = useState({
@@ -125,20 +134,20 @@ function App() {
     await setAppliedJobs(jobs => [...jobs, id])
   }
 
-  useEffect(() =>{
-    if(appliedJobs.length==0 && !localStorage.getItem('jobs')){
-      localStorage.setItem('jobs',JSON.stringify([]))
+  useEffect(() => {
+    if (appliedJobs.length == 0 && !localStorage.getItem('jobs')) {
+      localStorage.setItem('jobs', JSON.stringify([]))
     }
-    if(appliedJobs.length>0){
-      localStorage.setItem('jobs',JSON.stringify(appliedJobs))
+    if (appliedJobs.length > 0) {
+      localStorage.setItem('jobs', JSON.stringify(appliedJobs))
     }
-  },[appliedJobs])
+  }, [appliedJobs])
 
   useEffect(() => {
     const token = localStorage.getItem('token')
     JoblyApi.token = token
     const jobs = JSON.parse(localStorage.getItem('jobs'))
-    if(jobs){
+    if (jobs) {
       setAppliedJobs(() => jobs)
     }
     async function getInfo() {
@@ -177,7 +186,8 @@ function App() {
               element={<LoginForm
                 formData={loginFormData}
                 handleChange={handleLoginChange}
-                handleSubmit={handleLoginSubmit} />}
+                handleSubmit={handleLoginSubmit}
+                loginErrorStack={loginErrorStack} />}
             />
             <Route path='/signup'
               element={<SignUpForm
@@ -191,7 +201,7 @@ function App() {
                 formData={profileFormData} />} />
             <Route path='/logout'
               element={<Logout setUsername={setUsername} />} />
-            <Route path='*' element={<Navigate to="/" />}/>
+            <Route path='*' element={<Navigate to="/" />} />
           </Routes>
         </HashRouter>
       </ApplyContext.Provider>

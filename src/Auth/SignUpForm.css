@@ -1,0 +1,51 @@
+.SignUpForm{
+    display: flex;
+    justify-content: center;
+    height: 705px;
+
+}
+
+.SignUpForm-Container{
+    position: fixed;
+    top: 26%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 420px;
+    width:350px;
+    border-radius: 6px;
+    border: 1px solid gray;
+}
+
+@media (max-width:440px){
+    .SignUpForm-Container{
+        width: 80vw;
+    }
+}
+
+.SignUpForm-Text{
+    position: absolute;
+    left: 0px;
+    top: -70px;
+    font-size: 2em;
+    font-weight: 500;
+    color: white;
+}
+
+.SignUpForm-Form{
+    display: flex-wrap;
+    width: 90%;
+}
+
+.SignUpForm-Username{
+    display: inline-block;
+}
+
+.SignUpForm-Password{
+    display: inline-block;
+}
+
+.SignUpForm-Button{
+    margin: 10px 0 0 0;
+}

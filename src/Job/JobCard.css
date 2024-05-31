@@ -1,0 +1,13 @@
+.JobCard{
+    text-decoration: none;
+    color: black;
+    border: 1px black solid;
+    background-color: white;
+    /* border-radius: 12px; */
+    width: 700px;
+    padding: 10px;
+}
+
+.JobCard :hover{
+    color: #9FC2BA;
+}

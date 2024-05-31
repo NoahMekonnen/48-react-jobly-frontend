@@ -1,0 +1,62 @@
+.Home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 705px;
+}
+
+.Home-Jobly{
+    position: fixed;
+    top: 30%;
+    color: white;
+    font-size: 2em;
+}
+
+.Home-text{
+    position: fixed;
+    top: 37%;
+    color: white;
+    font-size: 1.5em;
+}
+
+.Home-Buttons{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+@media (max-width: 186px){
+    .Home-LoginButton{
+        position: fixed;
+        top: 52vh;
+    }
+    .Home-SignUpButton{
+        position: fixed;
+        top: 58vh
+    }
+}
+
+.Home-LoginButton{
+    width: 80px;
+}
+
+.Home-LoginButton p {
+    font-weight: 700;
+    height: 10px;
+}
+
+.Home-SignUpButton p{
+    font-weight: 700;
+    height: 10px;
+}
+
+.Home-Button{
+    display: inline;
+    width: 100%;
+}
