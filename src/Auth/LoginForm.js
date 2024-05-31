@@ -13,7 +13,6 @@ const LoginForm = ({ formData, handleChange, handleSubmit, loginErrorStack }) =>
                 <form className='LoginForm-Form'
                     onSubmit={(e) => {
                         handleSubmit(e)
-                        
                     }}>
                     <label htmlFor='username' className='form-label'><b>Username</b></label>
                     <input className="LoginForm-Username form-control"
