@@ -11,9 +11,9 @@ const SignUpForm = ({formData, handleChange, handleSubmit, signUpErrorStack}) =>
             <form className="SignUpForm-Form"
                 onSubmit={(e) =>{
                 handleSubmit(e)
-                if (signUpErrorStack.length === 0){
-                    navigate('/')
-                }
+                // if (signUpErrorStack.length === 0){
+                //     navigate('/')
+                // }
             }}>
                 <label><b>Username</b></label>
                 <input className="SignUpForm-Username form-control"

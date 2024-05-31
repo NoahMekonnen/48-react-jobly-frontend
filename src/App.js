@@ -19,6 +19,7 @@ function App() {
   const navigate = useNavigate()
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [loginErrorStack, setLoginErrorStack] = useState([])
+  const [signUpErrorStack, setSignUpErrorStack] = useState([])
 
   const user = localStorage.getItem('token') ? jwtDecode(localStorage.getItem('token')).username : ''
 
@@ -59,12 +60,12 @@ function App() {
       const token = await JoblyApi.register(signUpFormData)
       JoblyApi.token = token
       localStorage.setItem('token', token)
-      setLoginErrorStack(() => [])
+      setSignUpErrorStack(() => [])
       setUsername(() => jwtDecode(JoblyApi.token).username)
       localStorage.setItem('jobs', JSON.stringify([]))
-      // navigate('/')
+      navigate('/')
       } catch(e){
-        setLoginErrorStack(() => e)
+        setSignUpErrorStack(() => e)
         console.log(e)
       }
     }
@@ -100,8 +101,9 @@ function App() {
         setLoginErrorStack(() => [])
         setUsername(() => jwtDecode(JoblyApi.token).username)
         localStorage.setItem('jobs', JSON.stringify([]))
+        navigate('/')
       } catch (e) {
-        setLoginErrorStack(e)
+        setLoginErrorStack(() => e)
         console.log(e)
       }
     }
@@ -202,7 +204,7 @@ function App() {
                 formData={signUpFormData}
                 handleChange={handleSignUpChange}
                 handleSubmit={handleSignUpSubmit} 
-                signUpErrorStack={loginErrorStack}/>}
+                signUpErrorStack={signUpErrorStack}/>}
             />
             <Route path='/profile'
               element={<ProfilePage handleChange={handleProfileChange}
