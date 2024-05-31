@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
-import "./SignUpForm.css"
+import "./SignUpForm.css";
 
-const SignUpForm = ({formData, handleChange, handleSubmit}) => {
+const SignUpForm = ({formData, handleChange, handleSubmit, signUpErrorStack}) => {
     const navigate = useNavigate()
     const { username, password, firstName, lastName, email } = formData
     return (
@@ -11,7 +11,9 @@ const SignUpForm = ({formData, handleChange, handleSubmit}) => {
             <form className="SignUpForm-Form"
                 onSubmit={(e) =>{
                 handleSubmit(e)
-                navigate('/')
+                if (signUpErrorStack.length === 0){
+                    navigate('/')
+                }
             }}>
                 <label><b>Username</b></label>
                 <input className="SignUpForm-Username form-control"
@@ -46,6 +48,12 @@ const SignUpForm = ({formData, handleChange, handleSubmit}) => {
 
                 <button className="SignUpForm-Button btn btn-primary">Submit</button>
             </form>
+            {signUpErrorStack.length == 0
+                ?
+                ''
+                :
+                <div className='SignUpForm-Invalid btn btn-danger'>{signUpErrorStack}</div>
+                }
             </div>
         </div>
     )

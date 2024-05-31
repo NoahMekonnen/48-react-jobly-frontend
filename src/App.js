@@ -1,5 +1,5 @@
 import { useState, useEffect, createContext } from 'react';
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { HashRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom'
 import Home from './Home.js';
 import CompanyList from './Company/CompanyList.js';
 import CompanyDetail from './Company/CompanyDetail.js';
@@ -16,6 +16,7 @@ import './App.css'
 
 
 function App() {
+  const navigate = useNavigate()
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [loginErrorStack, setLoginErrorStack] = useState([])
 
@@ -54,11 +55,18 @@ function App() {
   const handleSignUpSubmit = async (e) => {
     e.preventDefault()
     async function register() {
+      try{
       const token = await JoblyApi.register(signUpFormData)
       JoblyApi.token = token
       localStorage.setItem('token', token)
+      setLoginErrorStack(() => [])
       setUsername(() => jwtDecode(JoblyApi.token).username)
       localStorage.setItem('jobs', JSON.stringify([]))
+      // navigate('/')
+      } catch(e){
+        setLoginErrorStack(() => e)
+        console.log(e)
+      }
     }
 
     await register()
@@ -89,6 +97,7 @@ function App() {
         const token = await JoblyApi.login(loginFormData)
         localStorage.setItem('token', token)
         JoblyApi.token = token
+        setLoginErrorStack(() => [])
         setUsername(() => jwtDecode(JoblyApi.token).username)
         localStorage.setItem('jobs', JSON.stringify([]))
       } catch (e) {
@@ -166,7 +175,6 @@ function App() {
   return (
     <div className="App">
       <ApplyContext.Provider value={{ handleApplySubmit, appliedJobs }}>
-        <HashRouter>
           <NavBar isLoggedIn={isLoggedIn}
             username={username} />
           <Routes>
@@ -193,7 +201,8 @@ function App() {
               element={<SignUpForm
                 formData={signUpFormData}
                 handleChange={handleSignUpChange}
-                handleSubmit={handleSignUpSubmit} />}
+                handleSubmit={handleSignUpSubmit} 
+                signUpErrorStack={loginErrorStack}/>}
             />
             <Route path='/profile'
               element={<ProfilePage handleChange={handleProfileChange}
@@ -203,7 +212,6 @@ function App() {
               element={<Logout setUsername={setUsername} />} />
             <Route path='*' element={<Navigate to="/" />} />
           </Routes>
-        </HashRouter>
       </ApplyContext.Provider>
 
     </div>

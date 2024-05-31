@@ -13,7 +13,8 @@ const LoginForm = ({ formData, handleChange, handleSubmit, loginErrorStack }) =>
                 <form className='LoginForm-Form'
                     onSubmit={(e) => {
                         handleSubmit(e)
-                        if (loginErrorStack == []){
+                        if (loginErrorStack.length === 0){
+                            console.log('successful')
                             navigate('/')
                         }
                     }}>
@@ -38,7 +39,7 @@ const LoginForm = ({ formData, handleChange, handleSubmit, loginErrorStack }) =>
                 ?
                 ''
                 :
-                <div className='LoginForm-Invalid form-control'>{loginErrorStack}</div>
+                <div className='LoginForm-Invalid btn btn-danger'>{loginErrorStack}</div>
                 }
             </div>
         </div>

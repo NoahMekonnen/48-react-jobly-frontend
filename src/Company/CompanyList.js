@@ -40,12 +40,16 @@ const CompanyList = ({username}) => {
             <div className='CompanyList-Form-Container'>
             <form onSubmit={handleSubmit}
                 className='CompanyList-Form'>
+                <div className='CompanyList-Input-Container'>
                 <input
-                    className='CompanyList-Input'
+                    className='CompanyList-Input form-control'
                     placeholder='Enter Search Item..'
                     value={filter}
                     onChange={handleChange} />
-                <button>Search</button>
+                </div>
+                <button className='CompanyList-Button btn btn-primary'>
+                    Search
+                </button>
             </form>
             </div>
 

@@ -13,7 +13,7 @@
     justify-content: center;
     align-items: center;
     background-color: white;
-    height: 220px;
+    height: 240px;
     width:350px;
     border-radius: 6px;
     border: 1px solid gray;
@@ -44,10 +44,10 @@
 }
 
 .LoginForm-Invalid{
-    position: relative;
-    height: 50px;
-    width: 80px;
+    top: 0;
+    position: absolute;
+    height: 32px;
+    width: 60%;
     background-color: rgb(243, 98, 122);
-    border-radius: 8px;
-    border: 1px red solid;
+    border-radius: 6px;
 }

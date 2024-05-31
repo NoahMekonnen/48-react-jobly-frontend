@@ -9,6 +9,15 @@
 
 .CompanyList-Form-Container{
     width: 100%;
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    /* justify-content: center; */
+}
+
+.CompanyList-Input-Container{
+    width: 60%;
+    display: inline-block;
+}
+
+.CompanyList-Button{
+    display: inline-block;
 }
